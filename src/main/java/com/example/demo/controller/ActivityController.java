@@ -24,7 +24,7 @@ public class ActivityController {
 	}
 
 	// Insert Activity
-	@PostMapping("/customer")
+	@PostMapping("/activity")
 	public Activity saveActivity(@RequestBody Activity activity) {
 		return activityDao.save(activity);
 	}
