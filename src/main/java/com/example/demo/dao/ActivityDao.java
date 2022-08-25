@@ -18,14 +18,13 @@ public class ActivityDao {
 	@Autowired
 	private DynamoDBMapper dynamoDBMapper;
 
-	public Activity save(Activity customer) {
-		dynamoDBMapper.save(customer);
-		return customer;
+	public Activity save(Activity activity) {
+		dynamoDBMapper.save(activity);
+		return activity;
 	}
 
 	public List<Activity> filter(String customerId, String fromValueStampTime, String toValueStampTime, String activityType, String fromAmount, String toAmount, String movement) {
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
-		System.out.println(customerId);
 		eav.put(":v1", new AttributeValue().withS(customerId));
 		eav.put(":v2", new AttributeValue().withN(fromValueStampTime));
 		eav.put(":v3", new AttributeValue().withN(toValueStampTime));

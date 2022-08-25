@@ -25,19 +25,19 @@ public class ActivityController {
 
 	// Insert Activity
 	@PostMapping("/customer")
-	public Activity saveActivity(@RequestBody Activity customer) {
-		return activityDao.save(customer);
+	public Activity saveActivity(@RequestBody Activity activity) {
+		return activityDao.save(activity);
 	}
 
 	@GetMapping("/filter")
-	public List<Activity> getFilter(@RequestBody JsonNode customer) {
-		String customerId = customer.get("customerId").toString();
-		String fromValueStampTime = customer.get("fromValueStampTime").toString();
-		String toValueStampTime = customer.get("toValueStampTime").toString();
-		String activityType = customer.get("activityType").toString();
-		String fromAmount = customer.get("fromAmount").toString();
-		String toAmount = customer.get("toAmount").toString();
-		String movement = customer.get("movement").toString();
+	public List<Activity> getFilter(@RequestBody JsonNode activity) {
+		String customerId = activity.get("customerId").toString();
+		String fromValueStampTime = activity.get("fromValueStampTime").toString();
+		String toValueStampTime = activity.get("toValueStampTime").toString();
+		String activityType = activity.get("activityType").toString();
+		String fromAmount = activity.get("fromAmount").toString();
+		String toAmount = activity.get("toAmount").toString();
+		String movement = activity.get("movement").toString();
 		return activityDao.filter(removeFirstandLast(customerId), fromValueStampTime, toValueStampTime, removeFirstandLast(activityType), fromAmount, toAmount, removeFirstandLast(movement));
 	}
 
