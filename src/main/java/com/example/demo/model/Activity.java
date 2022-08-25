@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamoDBTable(tableName = "customers")
-public class Customer{
+public class Activity{
 
 	@DynamoDBHashKey
     @DynamoDBAttribute

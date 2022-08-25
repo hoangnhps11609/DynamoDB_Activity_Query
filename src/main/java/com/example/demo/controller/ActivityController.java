@@ -8,17 +8,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dao.CustomerDao;
-import com.example.demo.model.Customer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.demo.dao.ActivityDao;
+import com.example.demo.model.Activity;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
-public class CustomerController {
+public class ActivityController {
 
 	@Autowired
-	CustomerDao customerDao;
+	ActivityDao activityDao;
 
 	@GetMapping("")
 	public String test() {
@@ -27,12 +25,12 @@ public class CustomerController {
 
 	// Insert Activity
 	@PostMapping("/customer")
-	public Customer saveActivity(@RequestBody Customer customer) {
-		return customerDao.save(customer);
+	public Activity saveActivity(@RequestBody Activity customer) {
+		return activityDao.save(customer);
 	}
 
 	@GetMapping("/filter")
-	public List<Customer> getFilter(@RequestBody JsonNode customer) {
+	public List<Activity> getFilter(@RequestBody JsonNode customer) {
 		String customerId = customer.get("customerId").toString();
 		String fromValueStampTime = customer.get("fromValueStampTime").toString();
 		String toValueStampTime = customer.get("toValueStampTime").toString();
@@ -40,7 +38,7 @@ public class CustomerController {
 		String fromAmount = customer.get("fromAmount").toString();
 		String toAmount = customer.get("toAmount").toString();
 		String movement = customer.get("movement").toString();
-		return customerDao.filter(removeFirstandLast(customerId), fromValueStampTime, toValueStampTime, removeFirstandLast(activityType), fromAmount, toAmount, removeFirstandLast(movement));
+		return activityDao.filter(removeFirstandLast(customerId), fromValueStampTime, toValueStampTime, removeFirstandLast(activityType), fromAmount, toAmount, removeFirstandLast(movement));
 	}
 
 	public static String removeFirstandLast(String str) {
